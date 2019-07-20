@@ -1,0 +1,25 @@
+module.exports = {
+  root: true,
+  env: {
+    node: true,
+    es6: true,
+    'jest/globals': true,
+  },
+  plugins: ['prettier', 'jest'],
+  extends: ['airbnb-base', 'prettier', 'plugin:jest/all'],
+  rules: {
+    'prettier/prettier': 'error',
+    'jest/no-disabled-tests': 'warn',
+    'jest/no-focused-tests': 'error',
+    'jest/no-identical-title': 'error',
+    'jest/prefer-to-have-length': 'warn',
+    'jest/valid-expect': 'error',
+    'no-console': 'off',
+    'no-iterator': 'off',
+    'no-restricted-syntax': 'off',
+    'no-await-in-loop': 'off',
+    'consistent-return': 'off',
+    'no-await-in-loop': 'off',
+    'no-shadow': 'off',
+  },
+};
