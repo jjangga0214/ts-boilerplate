@@ -2,11 +2,25 @@
   "name": "node-boilerplate",
   "version": "0.0.1",
   "repository": {
-    "url": "https://github.com/jjangga0214/node-boilerplate"
+    "type": "git",
+    "url": "git@gitlab.com:jjangga0214/node-boilerplate.git"
   },
+  "bugs": {
+    "url": "https://gitlab.com/jjangga0214/node-boilerplate"
+  },
+  "homepage": "https://gitlab.com/jjangga0214/node-boilerplate",
   "main": "index.js",
-  "author": "@jjangga0214",
+  "author": {
+    "name": "Gil B. Chan",
+    "email": "bnbcmindnpass@gmail.com",
+    "url": "https://gitlab.com/jjangga0214"
+  },
   "license": "MIT",
+  "keywords": [
+    "boilerplate",
+    "scaffold",
+    "skeleton"
+  ],
   "engines": {
     "node": ">=8"
   },
