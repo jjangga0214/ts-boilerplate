@@ -23,6 +23,7 @@ lint:
   artifacts:
     reports:
       junit: 'reports/lint.xml'
+    expire_in: 30 days
 
 unit:
   stage: test
@@ -37,22 +38,22 @@ unit:
       junit: 'reports/unit.xml'
     paths:
       - reports/unit-coverage
-    expire_in: 18 months
+    expire_in: 30 days
 
-integration:
-  stage: test
-  script: |
-    JEST_JUNIT_OUTPUT=reports/integration.xml \  
-    yarn test:ci:common \
-    --coverageDirectory ./reports/integration-coverage \
-    test/integration
-  coverage: '/All\sfiles.*?\s+(\d+.\d+)/'
-  artifacts:
-    reports:
-      junit: 'reports/integration.xml'
-    paths:
-      - reports/integration-coverage
-    expire_in: 18 months
+# integration:
+#   stage: test
+#   script: |
+#     JEST_JUNIT_OUTPUT=reports/integration.xml \
+#     yarn test:ci:common \
+#     --coverageDirectory ./reports/integration-coverage \
+#     test/integration
+#   coverage: '/All\sfiles.*?\s+(\d+.\d+)/'
+#   artifacts:
+#     reports:
+#       junit: 'reports/integration.xml'
+#     paths:
+#       - reports/integration-coverage
+#     expire_in: 30 days
 
 pages:
   stage: deploy
