@@ -5,7 +5,7 @@ module.exports = {
     es6: true,
     'jest/globals': true,
   },
-  plugins: ['prettier', 'jest'],
+  plugins: ['prettier', 'jest', 'markdown'],
   extends: ['airbnb-base', 'prettier', 'plugin:jest/all'],
   rules: {
     'prettier/prettier': 'error',
@@ -14,12 +14,15 @@ module.exports = {
     'jest/no-identical-title': 'error',
     'jest/prefer-to-have-length': 'warn',
     'jest/valid-expect': 'error',
+    'jest/expect-expect': 'off',
+    'jest/prefer-expect-assertions': 'off',
+    'jest/no-test-return-statement': 'off',
     'no-console': 'off',
     'no-iterator': 'off',
     'no-restricted-syntax': 'off',
     'no-await-in-loop': 'off',
     'consistent-return': 'off',
-    'no-await-in-loop': 'off',
     'no-shadow': 'off',
+    'no-unused-vars': 'off',
   },
-};
+}
