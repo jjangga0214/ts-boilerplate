@@ -1,0 +1,118 @@
+# Javascript Node CircleCI 2.1 configuration file
+#
+# Check https://circleci.com/docs/2.0/language-javascript/ for more details
+#
+version: 2.1
+
+orbs:
+  codecov: codecov/codecov@1.0.5
+
+executors:
+  executor: # name it as you want
+    docker:
+      - image: circleci/node:12
+      # Specify service dependencies here if necessary
+      # CircleCI maintains a library of pre-built images
+      # documented at https://circleci.com/docs/2.0/circleci-images/
+      # - image: circleci/mongo:3.4.4
+    working_directory: ~/repo
+
+jobs:
+  install:
+    executor: executor # refer from registered executors
+
+    steps:
+      - checkout
+      # Download and cache dependencies
+      - restore_cache:
+          keys:
+            - v1-dependencies-{{ checksum "yarn.lock" }}
+            # fallback to using the latest cache if no exact match is found
+            - v1-dependencies-
+      - run: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+          key: v1-dependencies-{{ checksum "yarn.lock" }}
+
+      # Persist the specified paths into the workspace for use in downstream job.
+      - persist_to_workspace:
+          # Must be an absolute path, or relative path from working_directory. This is a directory on the container which is
+          # taken to be the root directory of the workspace.
+          root: .
+          # Must be relative path from root
+          paths:
+            - .
+
+  lint:
+    executor: executor # refer from registered executors
+    steps:
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: .
+      # run tests and measure coverage!
+      - run:
+          command: |
+            yarn lint:js:pure . --format junit --output-file ./reports/lint.xml
+            yarn lint:md:all
+      - store_test_results:
+          path: reports
+
+  unit:
+    executor: executor # refer from registered executors
+    steps:
+      - attach_workspace:
+          # Must be absolute path or relative path from working_directory
+          at: .
+      - run:
+          command: |
+            yarn test:ci:common \
+            --coverageDirectory ./reports/unit-coverage \
+            test/unit
+          environment:
+            JEST_JUNIT_OUTPUT: 'reports/unit.xml'
+      - store_test_results:
+          path: reports
+      # - store_artifacts:
+      #     path: reports
+      - codecov/upload:
+          file: reports/unit-coverage/*.json
+          flags: unit
+
+  # integration:
+  #   executor: executor # refer from registered executors
+  #   steps:
+  #     - attach_workspace:
+  #         # Must be absolute path or relative path from working_directory
+  #         at: .
+  #     - run:
+  #         command: |
+  #           yarn test:ci:common \
+  #           --coverageDirectory ./reports/integration-coverage \
+  #           test/integration
+  #         environment:
+  #           JEST_JUNIT_OUTPUT: 'reports/integration.xml'
+  #     - store_test_results:
+  #         path: reports
+  #     # - store_artifacts:
+  #     #     path: reports
+  #     - codecov/upload:
+  #         file: reports/integration-coverage/*.json
+  #         flags: integration
+
+workflows:
+  version: 2.1
+  test: # name this as you want
+    jobs:
+      - install
+      - lint:
+          requires:
+            - install # wait for lint job to complete successfully before starting
+          # see circleci.com/docs/2.0/workflows/ for more examples.
+      - unit:
+          requires:
+            - lint
+      # - integration:
+      #     requires:
+      #       - lint
