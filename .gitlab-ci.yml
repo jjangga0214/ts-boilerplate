@@ -59,7 +59,7 @@ pages:
   stage: deploy
   dependencies:
     - unit
-    - integration
+    # - integration
   script:
     - mv unit-coverage/ public/
     - mv integration-coverage/ public/
