@@ -61,8 +61,8 @@ pages:
     - unit
     # - integration
   script:
-    - mv unit-coverage/ public/
-    - mv integration-coverage/ public/
+    - mv reports/unit-coverage/ public/
+    # - mv reports/integration-coverage/ public/
   artifacts:
     paths:
       - public
