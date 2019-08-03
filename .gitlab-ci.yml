@@ -4,6 +4,7 @@ stages:
   - install
   - lint
   - test
+  - deploy
 
 cache:
   paths:
@@ -30,11 +31,13 @@ unit:
     yarn test:ci:common \
     --coverageDirectory ./reports/unit-coverage \
     test/unit
+  coverage: '/All\sfiles.*?\s+(\d+.\d+)/'
   artifacts:
     reports:
       junit: 'reports/unit.xml'
     paths:
       - reports/unit-coverage
+    expire_in: 18 months
 
 integration:
   stage: test
@@ -43,8 +46,25 @@ integration:
     yarn test:ci:common \
     --coverageDirectory ./reports/integration-coverage \
     test/integration
+  coverage: '/All\sfiles.*?\s+(\d+.\d+)/'
   artifacts:
     reports:
       junit: 'reports/integration.xml'
     paths:
       - reports/integration-coverage
+    expire_in: 18 months
+
+pages:
+  stage: deploy
+  dependencies:
+    - unit
+    - integration
+  script:
+    - mv unit-coverage/ public/
+    - mv integration-coverage/ public/
+  artifacts:
+    paths:
+      - public
+    expire_in: 30 days
+  only:
+    - master
