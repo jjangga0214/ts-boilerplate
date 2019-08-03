@@ -1,0 +1,50 @@
+image: node:12
+
+stages:
+  - install
+  - lint
+  - test
+
+cache:
+  paths:
+    - node_modules/
+
+install:
+  stage: install
+  script:
+    - yarn install
+
+lint:
+  stage: lint
+  script:
+    - yarn lint:js:pure . --format junit --output-file ./reports/lint.xml
+    - yarn lint:md:all
+  artifacts:
+    reports:
+      junit: 'reports/lint.xml'
+
+unit:
+  stage: test
+  script: |
+    JEST_JUNIT_OUTPUT=reports/unit.xml \
+    yarn test:ci:common \
+    --coverageDirectory ./reports/unit-coverage \
+    test/unit
+  artifacts:
+    reports:
+      junit: 'reports/unit.xml'
+    paths:
+      - reports/unit-coverage
+
+integration:
+  stage: test
+  script: |
+    JEST_JUNIT_OUTPUT=reports/integration.xml \  
+    yarn test:ci:common \
+    --coverageDirectory ./reports/integration-coverage \
+    test/integration
+  artifacts:
+    reports:
+      junit: 'reports/integration.xml'
+    paths:
+      - reports/integration-coverage
