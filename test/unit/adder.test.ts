@@ -1,4 +1,4 @@
-const { add } = require('#/adder')
+import { add } from '#/adder'
 
 describe('adder', () => {
   it('add ', () => {

@@ -1,4 +1,4 @@
-function add(numbers /* : String */) {
+export function add(numbers: string): number {
   if (numbers.trim()) {
     return numbers
       .split(/(\s+)/)
@@ -7,8 +7,4 @@ function add(numbers /* : String */) {
       .reduce((p, c) => p + c)
   }
   return 0
-}
-
-module.exports = {
-  add,
 }

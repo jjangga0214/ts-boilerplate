@@ -1,6 +1,6 @@
-# node-boilerplate
+# ts-boilerplate
 
-Example of pure node boilerplate.
+Example of typescript boilerplate.
 
 [![license](https://img.shields.io/badge/license-MIT-ff4081.svg?style=flat-square&labelColor=black)](./LICENSE)
 [![test](https://img.shields.io/badge/test-jest-7c4dff.svg?style=flat-square&labelColor=black)](./jest.config.js)
@@ -14,25 +14,7 @@ Example of pure node boilerplate.
 
 ## Note
 
-Please read [NOTE.md](./NOTE.md), before getting started.
-
-## getting started
-
-```bash
-yarn install
-```
-
-## yarn scripts
-
-```bash
-# execute the project's entry
-yarn start
-
-# run jest for all "*.test.js"
-yarn test
-
-yarn lint
-```
+Please read [NOTE.md](./docs/NOTE.md), before getting started.
 
 ## Getting started
 
@@ -42,10 +24,17 @@ Install dependencies.
 yarn install
 ```
 
-Then run,
+On development, run
 
 ```bash
-yarn start
+yarn dev # restarts a process when file change is detected.
+```
+
+On productions, run
+
+```bash
+yarn build # compiles ts to js
+yarn start # runs compiled js
 ```
 
 ## Yarn scripts
@@ -58,7 +47,10 @@ yarn test:coverage # runs all tests and measures coverage
 yarn test:unit:coverage # runs unit tests and measures coverage
 yarn test:integration:coverage # runs integration tests and measures coverage
 
-yarn lint # lints and formats with eslint and prettier
+yarn lint # lint
+yarn format # format(fix)
+
+yarn release # release using standard-version
 ```
 
 ## License

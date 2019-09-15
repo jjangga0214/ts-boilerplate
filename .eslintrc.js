@@ -1,12 +1,19 @@
 module.exports = {
+  parser: '@typescript-eslint/parser',
   root: true,
   env: {
     node: true,
     es6: true,
     'jest/globals': true,
   },
-  plugins: ['prettier', 'jest', 'markdown'],
-  extends: ['airbnb-base', 'prettier', 'plugin:jest/all'],
+  plugins: ['@typescript-eslint', 'prettier', 'jest', 'markdown'],
+  extends: [
+    'plugin:@typescript-eslint/recommended',
+    'airbnb-base',
+    'prettier',
+    'prettier/@typescript-eslint',
+    'plugin:jest/all',
+  ],
   rules: {
     'prettier/prettier': 'error',
     'jest/no-disabled-tests': 'warn',
@@ -17,6 +24,7 @@ module.exports = {
     'jest/expect-expect': 'off',
     'jest/prefer-expect-assertions': 'off',
     'jest/no-test-return-statement': 'off',
+    'import/prefer-default-export': 'off',
     'no-console': 'off',
     'no-iterator': 'off',
     'no-restricted-syntax': 'off',
