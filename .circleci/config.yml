@@ -54,8 +54,8 @@ jobs:
       # run tests and measure coverage!
       - run:
           command: |
-            yarn lint:js:pure . --format junit --output-file ./reports/lint.xml
-            yarn lint:md:all
+            yarn lint:js . --format junit --output-file ./reports/lint.xml
+            yarn lint:md .
       - store_test_results:
           path: reports
 
@@ -67,7 +67,7 @@ jobs:
           at: .
       - run:
           command: |
-            yarn test:ci:common \
+            yarn test:ci \
             --coverageDirectory ./reports/unit-coverage \
             test/unit
           environment:
@@ -88,7 +88,7 @@ jobs:
   #         at: .
   #     - run:
   #         command: |
-  #           yarn test:ci:common \
+  #           yarn test:ci \
   #           --coverageDirectory ./reports/integration-coverage \
   #           test/integration
   #         environment:

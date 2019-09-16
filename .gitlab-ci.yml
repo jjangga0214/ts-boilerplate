@@ -1,4 +1,4 @@
-image: node:12
+image: node:12-alpine
 
 stages:
   - install
@@ -18,8 +18,8 @@ install:
 lint:
   stage: lint
   script:
-    - yarn lint:js:pure . --format junit --output-file ./reports/lint.xml
-    - yarn lint:md:all
+    - yarn lint:js . --format junit --output-file ./reports/lint.xml
+    - yarn lint:md .
   artifacts:
     reports:
       junit: 'reports/lint.xml'
@@ -29,7 +29,7 @@ unit:
   stage: test
   script: |
     JEST_JUNIT_OUTPUT=reports/unit.xml \
-    yarn test:ci:common \
+    yarn test:ci \
     --coverageDirectory ./reports/unit-coverage \
     test/unit
   coverage: '/All\sfiles.*?\s+(\d+.\d+)/'
@@ -44,7 +44,7 @@ unit:
 #   stage: test
 #   script: |
 #     JEST_JUNIT_OUTPUT=reports/integration.xml \
-#     yarn test:ci:common \
+#     yarn test:ci \
 #     --coverageDirectory ./reports/integration-coverage \
 #     test/integration
 #   coverage: '/All\sfiles.*?\s+(\d+.\d+)/'
