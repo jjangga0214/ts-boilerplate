@@ -11,6 +11,9 @@
   "homepage": "https://github.com/jjangga0214/ts-boilerplate",
   "main": "dist/index.js",
   "typescript:main": "src/index.ts",
+  "files": [
+    "dist"
+  ],
   "author": {
     "name": "Gil B. Chan",
     "email": "bnbcmindnpass@gmail.com",
