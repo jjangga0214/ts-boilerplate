@@ -33,10 +33,10 @@
   },
   "engineStrict": true,
   "scripts": {
-    "link-module-alias": "link-module-alias",
     "prepublish": "yarn build",
-    "postinstall": "link-module-alias",
+    "postinstall": "shx mkdir dist && link-module-alias",
     "release": "HUSKY_SKIP_HOOKS=1 standard-version",
+    "link-module-alias": "link-module-alias",
     "husky-skip": "HUSKY_SKIP_HOOKS=1",
     "format": "yarn format:js . && yarn format:ts . && yarn lint:md .",
     "format:js": "yarn lint:js --fix",
@@ -54,7 +54,7 @@
     "test:ci": "yarn test:coverage --ci --reporters='jest-junit'",
     "start": "node dist/index.js",
     "dev": "ts-node-dev --respawn --transpileOnly src/index.ts",
-    "build": "shx rm -rf dist/* && tsc",
+    "build": "shx rm -rf dist/* && tsc && link-module-alias",
     "build:watch": "tsc -w"
   },
   "_moduleAliases": {
