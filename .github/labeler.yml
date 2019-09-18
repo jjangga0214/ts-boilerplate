@@ -1,0 +1,47 @@
+circleci:
+  - .circleci/**/*
+
+gitlab:
+  - .gitlab-ci.yml
+
+github:
+  - .github/**/*
+
+documentation:
+  - docs/**/*
+  - **/*.md
+
+test:
+  - test/**/*
+  - jest.config.js
+  - .codecov.yml
+
+lint:
+  - .eslint*
+  - .prettier*
+  - .markdownlint*
+  - .editorconfig
+  - commitlint*
+
+config:
+  - tsconfig.json
+  - .nvmrc
+
+env:
+  - .env.*
+
+git:
+  - .gitignore
+  - .gitattributes
+  - .gitmodules
+
+build:
+  - package.json
+  - yarn.lock
+  - package-lock.json
+
+editor:
+  - .vscode/**/*
+
+src:
+  - src/**/*
