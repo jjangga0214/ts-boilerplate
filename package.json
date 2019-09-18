@@ -33,7 +33,7 @@
   },
   "engineStrict": true,
   "scripts": {
-    "prepublish": "yarn build",
+    "prepublishOnly": "yarn build",
     "postinstall": "shx mkdir dist && link-module-alias",
     "release": "HUSKY_SKIP_HOOKS=1 standard-version",
     "link-module-alias": "link-module-alias",
