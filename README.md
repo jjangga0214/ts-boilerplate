@@ -10,7 +10,8 @@ Example of typescript boilerplate.
 [![yarn:required](https://img.shields.io/badge/yarn-required-aeea00.svg?style=flat-square&labelColor=black)](https://yarnpkg.com/en/)
 [![Conventional Commits](https://img.shields.io/badge/Conventional%20Commits-1.0.0-ffab00.svg?style=flat-square&labelColor=black)](https://conventionalcommits.org)
 [![Commitizen friendly](https://img.shields.io/badge/Commitizen-cz_conventional_changelog-dd2c00.svg?style=flat-square&labelColor=black)](http://commitizen.github.io/cz-cli/)
-[![pr welcome](https://img.shields.io/badge/PRs-welcome-09FF33.svg?style=flat-square&labelColor=black)]()
+[![pr welcome](https://img.shields.io/badge/PRs-welcome-09FF33.svg?style=flat-square&labelColor=black)][![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fjjangga0214%2Fts-boilerplate.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fjjangga0214%2Fts-boilerplate?ref=badge_shield)
+()
 
 ## Note
 
@@ -56,3 +57,6 @@ yarn release # release using standard-version
 ## License
 
 [MIT License](license). Copyright &copy; 2019, @jjangga0214 <[bnbcmindnpass@gmail.com](mailto:bnbcmindnpass@gmail.com)>
+
+
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fjjangga0214%2Fts-boilerplate.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fjjangga0214%2Fts-boilerplate?ref=badge_large)
