@@ -27,7 +27,7 @@ jobs:
         run: |
           yarn test:ci \
           --coverageDirectory ./reports/unit-coverage \
-          unit
+          test/unit
         env:
           JEST_JUNIT_OUTPUT: 'reports/unit.xml'
 
@@ -38,20 +38,20 @@ jobs:
           file: reports/unit-coverage/*.json
           flags: unit
 
-      - name: Integration Test
-        run: |
-          yarn test:ci \
-          --coverageDirectory ./reports/integration-coverage \
-          integration
-        env:
-          JEST_JUNIT_OUTPUT: 'reports/integration.xml'
+      # - name: Integration Test
+      #   run: |
+      #     yarn test:ci \
+      #     --coverageDirectory ./reports/integration-coverage \
+      #     test/integration
+      #   env:
+      #     JEST_JUNIT_OUTPUT: 'reports/integration.xml'
 
-      - name: Upload Integration Test Coverage To Codecov
-        uses: codecov/codecov-action@v1.0.2
-        with:
-          token: ${{secrets.CODECOV_TOKEN}}
-          file: reports/integration-coverage/*.json
-          flags: integration
+      # - name: Upload Integration Test Coverage To Codecov
+      #   uses: codecov/codecov-action@v1.0.2
+      #   with:
+      #     token: ${{secrets.CODECOV_TOKEN}}
+      #     file: reports/integration-coverage/*.json
+      #     flags: integration
 
       - name: Lint
         run: yarn lint:code:ci --output-file ./reports/lint.xml && yarn lint:md .
