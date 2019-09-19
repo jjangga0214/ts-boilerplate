@@ -18,9 +18,46 @@ The version of yarn should satisfy the condition specified on package.json's `en
 
 ## Module aliases
 
-[`link-module-alias`](https://github.com/Rush/link-module-alias) is used for creating module aliases (by creating symlink in node_modules) for node. Refer `_moduleAliases` field in package.json. `#` is used instead of somewhat conventional `@` due to [an issue](https://github.com/Rush/link-module-alias/issues/3) of `link-module-alias`. For typescript, corresponding configurations are done by `baseUrl` and `paths` fields in tsconfig.json.
+Module Aliases should be consistent between node, typescript, and jest.
 
-Some commands handling node_modules like `yarn remove`, `yarn upgrade`, and `npm uninstall` can cause deletion of symlinks (but not the original codes). When this happens, simply executing `npx link-module-alias`(or `yarn install` with postinstall config calling `link-module-alias`) would make symlinks again.
+<!-- markdownlint-disable MD024 -->
+
+### Node
+
+<!-- markdownlint-enable MD024 -->
+
+[`link-module-alias`](https://github.com/Rush/link-module-alias) is used for creating module aliases (by creating symlink in node_modules) for node. Refer `_moduleAliases` field in package.json.
+
+### Typescript
+
+For typescript, corresponding configurations are done by `baseUrl` and `paths` fields in tsconfig.json.
+
+### Jest
+
+See `moduleNameMapper` for corresponding configuration.
+
+For example,
+
+```json
+// A map from regular expressions to module names that allow to stub out resources with a single module
+moduleNameMapper: {
+  '^#/(.*)$': '<rootDir>/src/$1',
+}
+```
+
+means **#/** will be matched to **<rootDir>/src/**.
+
+<!-- markdownlint-disable MD024 -->
+
+### Note
+
+<!-- markdownlint-enable MD024 -->
+
+Note that `#` is used instead of somewhat conventional `@` due to [an issue](https://github.com/Rush/link-module-alias/issues/3) of `link-module-alias`.
+
+### Caution
+
+Some commands handling node_modules like `yarn remove` or `yarn upgrade` can cause deletion of symlinks (but not the original source codes). When this happens, simply executing `npx link-module-alias`, `yarn link-module-alias`, or `yarn install`(postinstall config calling `link-module-alias`) would make symlinks again.
 
 ## Test
 
