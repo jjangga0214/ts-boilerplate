@@ -8,7 +8,7 @@
   },
   "scripts": {
     "prepublishOnly": "yarn build",
-    "postinstall": "shx mkdir dist && link-module-alias",
+    "postinstall": "shx mkdir -p dist && link-module-alias",
     "release": "HUSKY_SKIP_HOOKS=1 standard-version",
     "link-module-alias": "link-module-alias",
     "husky-skip": "HUSKY_SKIP_HOOKS=1",
