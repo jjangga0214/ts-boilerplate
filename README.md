@@ -12,6 +12,7 @@ Example of typescript boilerplate.
 [![Commitizen friendly](https://img.shields.io/badge/Commitizen-cz_conventional_changelog-dd2c00.svg?style=flat-square&labelColor=black)](http://commitizen.github.io/cz-cli/)
 [![pr welcome](https://img.shields.io/badge/PRs-welcome-09FF33.svg?style=flat-square&labelColor=black)]
 
+[![codecov](https://codecov.io/gh/jjangga0214/ts-boilerplate/branch/master/graph/badge.svg)](https://codecov.io/gh/jjangga0214/ts-boilerplate)
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fjjangga0214%2Fts-boilerplate.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fjjangga0214%2Fts-boilerplate?ref=badge_shield)
 
 ## Note
