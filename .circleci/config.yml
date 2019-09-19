@@ -54,7 +54,7 @@ jobs:
       # run tests and measure coverage!
       - run:
           command: |
-            yarn lint:js . --format junit --output-file ./reports/lint.xml
+            yarn lint:ts . --format junit --output-file ./reports/lint.xml
             yarn lint:md .
       - store_test_results:
           path: reports

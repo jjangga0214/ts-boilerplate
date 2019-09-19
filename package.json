@@ -1,50 +1,26 @@
 {
   "name": "ts-boilerplate",
   "version": "1.0.0",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/jjangga0214/ts-boilerplate.git"
-  },
-  "bugs": {
-    "url": "https://github.com/jjangga0214/ts-boilerplate"
-  },
-  "homepage": "https://github.com/jjangga0214/ts-boilerplate",
-  "main": "dist/index.js",
-  "typescript:main": "src/index.ts",
-  "files": [
-    "dist"
-  ],
-  "author": {
-    "name": "Gil B. Chan",
-    "email": "bnbcmindnpass@gmail.com",
-    "url": "https://gitlab.com/jjangga0214"
-  },
   "license": "MIT",
-  "keywords": [
-    "boilerplate",
-    "scaffold",
-    "skeleton",
-    "starter",
-    "typescript",
-    "ts"
-  ],
+  "engineStrict": true,
   "engines": {
     "node": "12.x"
   },
-  "engineStrict": true,
   "scripts": {
     "prepublishOnly": "yarn build",
     "postinstall": "shx mkdir dist && link-module-alias",
     "release": "HUSKY_SKIP_HOOKS=1 standard-version",
     "link-module-alias": "link-module-alias",
     "husky-skip": "HUSKY_SKIP_HOOKS=1",
-    "format": "yarn format:js . && yarn format:ts . && yarn lint:md .",
-    "format:js": "yarn lint:js --fix",
-    "format:ts": "yarn lint:ts --fix",
-    "lint": "yarn lint:js . && yarn lint:ts . && yarn lint:md .",
     "lint:js": "eslint --ext js --ext md",
     "lint:ts": "eslint --ext ts --ext md",
+    "lint:code": "eslint --ext js --ext ts --ext md",
+    "lint:code:ci": "yarn lint:code . --format junit",
     "lint:md": "markdownlint --ignore node_modules --ignore .git --ignore CHANGELOG.md",
+    "lint": "yarn lint:code . && yarn lint:md .",
+    "format:js": "yarn lint:js --fix",
+    "format:ts": "yarn lint:ts --fix",
+    "format": "yarn lint:code . --fix && yarn lint:md .",
     "test": "jest",
     "test:unit": "yarn test test/unit",
     "test:integration": "yarn test test/integration",
@@ -52,13 +28,33 @@
     "test:unit:coverage": "yarn test:coverage test/unit",
     "test:integration:coverage": "yarn test:coverage test/integration",
     "test:ci": "yarn test:coverage --ci --reporters='jest-junit'",
-    "start": "node dist/index.js",
     "dev": "ts-node-dev --respawn --transpileOnly src/index.ts",
     "build": "shx rm -rf dist/* && tsc && link-module-alias",
-    "build:watch": "tsc -w"
+    "build:watch": "tsc -w",
+    "start": "node dist/index.js"
   },
   "_moduleAliases": {
     "#": "dist"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged",
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "yarn format:js",
+      "git add"
+    ],
+    "*.ts": [
+      "yarn format:ts",
+      "git add"
+    ],
+    "*.md": [
+      "yarn lint:md"
+    ]
   },
   "devDependencies": {
     "@commitlint/cli": "^8.1.0",
@@ -89,26 +85,31 @@
     "ts-node-dev": "^1.0.0-pre.42",
     "typescript": "^3.6.3"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "prepare-commit-msg": "exec < /dev/tty && git cz --hook",
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
+  "dependencies": {},
+  "main": "dist/index.js",
+  "typescript:main": "src/index.ts",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jjangga0214/ts-boilerplate.git"
   },
-  "lint-staged": {
-    "*.js": [
-      "yarn format:js",
-      "git add"
-    ],
-    "*.ts": [
-      "yarn format:ts",
-      "git add"
-    ],
-    "*.md": [
-      "yarn lint:md",
-      "git add"
-    ]
+  "bugs": {
+    "url": "https://github.com/jjangga0214/ts-boilerplate"
   },
-  "dependencies": {}
+  "homepage": "https://github.com/jjangga0214/ts-boilerplate",
+  "author": {
+    "name": "Gil B. Chan",
+    "email": "bnbcmindnpass@gmail.com",
+    "url": "https://github.com/jjangga0214"
+  },
+  "keywords": [
+    "boilerplate",
+    "scaffold",
+    "skeleton",
+    "starter",
+    "typescript",
+    "ts"
+  ]
 }

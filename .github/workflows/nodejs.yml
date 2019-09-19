@@ -12,15 +12,46 @@ jobs:
 
     steps:
       - uses: actions/checkout@v1
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
-      - name: npm install, build, test, and lint
-        run: |
-          npm install
-          npm run build --if-present
-          npm run test
-          npm run lint
+
+      - name: Install Dependencies
+        run: yarn install
         env:
           CI: true
+
+      - name: Unit Test
+        run: |
+          yarn test:ci \
+          --coverageDirectory ./reports/unit-coverage \
+          test/unit
+        env:
+          JEST_JUNIT_OUTPUT: 'reports/unit.xml'
+
+      - name: Upload Unit Test Coverage To Codecov
+        uses: codecov/codecov-action@v1.0.2
+        with:
+          token: ${{secrets.CODECOV_TOKEN}}
+          file: reports/unit-coverage/*.json
+          flags: unit
+
+      - name: Integration Test
+        run: |
+          yarn test:ci \
+          --coverageDirectory ./reports/integration-coverage \
+          test/integration
+        env:
+          JEST_JUNIT_OUTPUT: 'reports/integration.xml'
+
+      - name: Upload Integration Test Coverage To Codecov
+        uses: codecov/codecov-action@v1.0.2
+        with:
+          token: ${{secrets.CODECOV_TOKEN}}
+          file: reports/integration-coverage/*.json
+          flags: integration
+
+      - name: Lint
+        run: yarn lint:code:ci --output-file ./reports/lint.xml && yarn lint:md .
