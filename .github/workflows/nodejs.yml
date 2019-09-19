@@ -54,4 +54,5 @@ jobs:
       #     flags: integration
 
       - name: Lint
-        run: yarn lint:code:ci --output-file ./reports/lint.xml && yarn lint:md .
+        # run: yarn lint:code:ci --output-file ./reports/lint.xml && yarn lint:md .
+        run: yarn lint
