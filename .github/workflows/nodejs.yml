@@ -27,7 +27,7 @@ jobs:
         run: |
           yarn test:ci \
           --coverageDirectory ./reports/unit-coverage \
-          test/unit
+          unit
         env:
           JEST_JUNIT_OUTPUT: 'reports/unit.xml'
 
@@ -42,7 +42,7 @@ jobs:
         run: |
           yarn test:ci \
           --coverageDirectory ./reports/integration-coverage \
-          test/integration
+          integration
         env:
           JEST_JUNIT_OUTPUT: 'reports/integration.xml'
 
