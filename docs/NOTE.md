@@ -65,7 +65,7 @@ Some commands handling node_modules like `yarn remove` or `yarn upgrade` can cau
 
 ## Dev
 
-`yarn dev` uses [ts-node-dev](https://github.com/whitecolor/ts-node-dev), and ts-node-dev is devDependency. It's not used in `yarn start`, which is for production.
+`yarn dev` uses [concurrently](https://github.com/kimmobrunfeldt/concurrently) and [nodemon](https://github.com/remy/nodemon). [ts-node-dev](https://github.com/whitecolor/ts-node-dev) is not preferred due to an [issue](https://github.com/whitecolor/ts-node-dev/issues/95) of **paths** field on tsconfig.json. `yarn dev` is only for development iteration, while `yarn start` is only for production.
 
 ## Git hooks
 
