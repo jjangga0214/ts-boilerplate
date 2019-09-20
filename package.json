@@ -28,10 +28,10 @@
     "test:unit:coverage": "yarn test:coverage test/unit",
     "test:integration:coverage": "yarn test:coverage test/integration",
     "test:ci": "yarn test:coverage --ci --reporters='jest-junit'",
-    "dev": "concurrently 'tsc -w' 'nodemon dist/index.js'",
+    "dev": "concurrently 'tsc -w -i' 'nodemon dist/index.js'",
     "build": "shx rm -rf dist/* && tsc",
     "build:watch": "tsc -w",
-    "build:incremental": "tsc --incremental",
+    "build:incremental": "tsc -i",
     "start": "node dist/index.js"
   },
   "_moduleAliases": {
