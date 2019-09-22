@@ -36,4 +36,9 @@ module.exports = {
     'no-shadow': 'off',
     'no-unused-vars': 'off',
   },
+  settings: {
+    'import/resolver': {
+      typescript: {},
+    },
+  },
 }
