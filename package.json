@@ -28,7 +28,9 @@
     "test:unit:coverage": "yarn test:coverage test/unit",
     "test:integration:coverage": "yarn test:coverage test/integration",
     "test:ci": "yarn test:coverage --ci --reporters='jest-junit'",
-    "dev": "concurrently 'tsc -w -i' 'nodemon dist/index.js'",
+    "dev:build": "concurrently 'tsc -w -i' 'nodemon dist/index.js'",
+    "dev:no-respawn": "dotenv -- ts-node-dev --transpileOnly src/index.ts",
+    "dev": "dotenv -- ts-node-dev --transpileOnly --respawn src/index.ts",
     "build": "shx rm -rf dist/* && tsc",
     "build:watch": "tsc -w",
     "build:incremental": "tsc -i",
@@ -87,6 +89,7 @@
     "shx": "^0.3.2",
     "standard-version": "^7.0.0",
     "ts-jest": "^24.1.0",
+    "ts-node-dev": "^1.0.0-pre.44",
     "typescript": "^3.6.3"
   },
   "dependencies": {},
