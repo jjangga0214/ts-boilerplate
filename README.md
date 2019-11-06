@@ -31,6 +31,10 @@ On development, run
 
 ```bash
 yarn dev # restarts a process when file change is detected.
+# or
+yarn dev:build # same as above
+# or
+yarn dev:no-respawn # run once without generating compiled files.
 ```
 
 On productions, run
